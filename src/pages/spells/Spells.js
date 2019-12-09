@@ -5,29 +5,17 @@ class Spells extends React.Component {
   constructor() {
     super();
     this.state = {
-      posts: [
-        {
-          name: 'Lorem ipsum dolor sit amet, consecteur',
-          url: 'http://google.com',
-        },
-        {
-          name: 'Lorem ipsum dolor sit amet, consecteur',
-          url: 'http://google.com',
-        },
-        {
-          name: 'Lorem ipsum dolor sit amet, consecteur',
-          url: 'http://google.com',
-        },
-        {
-          name: 'Lorem ipsum dolor sit amet, consecteur',
-          url: 'http://google.com',
-        },
-        {
-          name: 'Lorem ipsum dolor sit amet, consecteur',
-          url: 'http://google.com',
-        },
-      ],
+      posts: [],
     };
+  }
+
+  componentDidMount() {
+    fetch('http://www.dnd5eapi.co/api/spells/')
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({ posts: data.results });
+      })
+      .catch(console.log)
   }
 
   render() {
